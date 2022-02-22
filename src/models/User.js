@@ -1,5 +1,5 @@
 import { Schema,model } from 'mongoose';
-import { hash } from 'bcryptjs';
+import { hash,compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { SECRET } from '../constants';
 import { randomBytes } from 'crypto';
@@ -35,8 +35,6 @@ const UserSchema = new Schema({
         required: false
     },
 
-
-
 },{
     timestamps: true
 });
@@ -46,7 +44,7 @@ UserSchema.pre('save', async function(next){
    let user = this;// this merujuk ke function dan tabel schema
    
    //jika isi field password tidak berubah maka tidak terjadi apa2
-   if(!isModified('password')) return next();
+   if(!user.isModified('password')) return next();
    user.password = await hash(user.password,10);
    next();
 });
@@ -72,9 +70,7 @@ UserSchema.methods.generatePasswordReset =  function(){
 }
 
 UserSchema.methods.getUserInfo = function(){
-    return pick(this,['_id','name','email']);
+    return pick(this,['_id','name','email','verified']);
 }
 
-const User = model('user',UserSchema);
-
-export default User;
+export const User = model('user',UserSchema);

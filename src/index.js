@@ -1,4 +1,3 @@
-
 import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
@@ -18,6 +17,7 @@ app.use(cors());
 app.use(json());
 
 // inject sub Routes Users
+// app.get('/',(req,res)=>{res.send('Test Root route')});
 app.use('/users',userRoutes);
 
 const main = async () => {
