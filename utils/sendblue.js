@@ -4,7 +4,7 @@ const SendInBlue = require('sib-api-v3-sdk');
 // Inisiasi
 const defaultClient = SendInBlue.ApiClient.instance;
 const apiKey = defaultClient.authentications["api-key"];
-apiKey.apiKey = "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";
+apiKey.apiKey = SENDBLUE_API;
 
 // Membuat Instance untuk mengirim Email
 // const apiInstance = new SibApiV3Sdk.EmailCampaignsApi();
