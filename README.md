@@ -11,4 +11,4 @@
   
 2.  Use Interpreter Cross Platform NodeJs and with noSQL MongoDB Database
 
-3.  Email verification use SENDINBLUE and Email Template use mailgen from npmjs
+3.  Email verification use SENDINBLUE and email Template use mailgen
