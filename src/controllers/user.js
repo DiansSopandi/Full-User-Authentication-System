@@ -1,5 +1,6 @@
 import { join } from 'path';
-import { User } from '../models/User';
+// import { User } from '../models/User';
+import { User } from '../models';
 import { randomBytes } from 'crypto';
 import { DOMAIN } from '../constants';
 import sendMail from '../functions/sendMail';
@@ -49,7 +50,7 @@ export const register = async ( req,res ) => {
             return res.status(201).json({
                 success: true,
                 message: `User Email Account ${user.email} Created. please verify your email address`
-            })
+            });
     } catch (error) {        
         console.log(`error user registration: ${error}`);
         return res.status(500).json({

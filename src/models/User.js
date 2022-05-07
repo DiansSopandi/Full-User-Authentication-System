@@ -1,9 +1,9 @@
 import { Schema,model } from 'mongoose';
 import { hash,compare } from 'bcryptjs';
-import { sign } from 'jsonwebtoken';
-import { SECRET } from '../constants';
-import { randomBytes } from 'crypto';
-import { pick } from 'lodash';
+import { sign }         from 'jsonwebtoken';
+import { SECRET }       from '../constants';
+import { randomBytes }  from 'crypto';
+import { pick }         from 'lodash';
 
 const UserSchema = new Schema({
     name:{
@@ -73,4 +73,5 @@ UserSchema.methods.getUserInfo = function(){
     return pick(this,['_id','name','email','verified']);
 }
 
-export const User = model('user',UserSchema);
+const User = model('user',UserSchema);
+export default User;

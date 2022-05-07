@@ -2,6 +2,8 @@ import { Router } from 'express';
 import { register, verify, authenticate } from '../controllers/user';
 import validator from '../middlewares/validator-middleware';
 import { AuthenticateValidations, RegisterValidations } from '../validators';
+import passport from 'passport';
+import { userAuth } from '../middlewares/auth-guard';
 
 const router = Router();
 
@@ -31,5 +33,22 @@ router.get('/verify/:verificationCode',verify);
 */
 
 router.post('/authenticate',AuthenticateValidations, validator, authenticate);
+
+/*
+*   @description  to get the authenticated an user's profiles
+*   @api    /users/routes/authenticate
+*   @access private 
+*   @type   GET    
+*/
+router.get('/authenticate', 
+            // passport.authenticate("jwt",{ session : false }), 
+            userAuth,
+            async (req,   res) => {
+                // console.log(req);
+                // user : JSON.parse(req.user),
+                return res.status(200).json({
+                    message : 'Hello JWT',
+                })
+            });
 
 export default router;

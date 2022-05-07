@@ -8,7 +8,9 @@ const validationMiddleware = ( req,res,next ) => {
             errors : errors.array()
         });
     }
-
+    console.log(req.params);
+    console.log(req.body);
+    console.log(req.query);
     next();
 }
 
